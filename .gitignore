@@ -132,3 +132,4 @@ dmypy.json
 workspace.xml
 tasks.xml
 venv/
+.idea/
