@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import serial
-import time
 from command_handler import WallECommandHandler
 
 ch = WallECommandHandler()
