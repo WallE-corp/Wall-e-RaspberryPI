@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import serial
-from command_handler import WallECommandHandler
+from walle_networking import WallECommandHandler
 
 ch = WallECommandHandler()
 

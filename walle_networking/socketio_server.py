@@ -5,7 +5,7 @@ from aiohttp import web
 class SocketIOServer(socketio.AsyncNamespace):
   def __init__(self):
     super().__init__()
-    self.sio = socketio.AsyncServer()
+    self.sio = socketio.AsyncServer(logger=True, cors_allowed_origins='*')
     self.sio.register_namespace(self)
     self.app = web.Application()
     self.sio.attach(self.app)
@@ -14,7 +14,7 @@ class SocketIOServer(socketio.AsyncNamespace):
   def run(self):
     web.run_app(self.app, port=8080)
 
-  def on_connect(self, sid, environ):
+  async def on_connect(self, sid, environ):
     print('connect', sid)
 
   def on_disconnect(self, sid):
@@ -26,3 +26,7 @@ class SocketIOServer(socketio.AsyncNamespace):
       self.delegate.handle_message(message)
     return 'OK'
 
+
+if __name__ == '__main__':
+  sioServer = SocketIOServer()
+  sioServer.run()
