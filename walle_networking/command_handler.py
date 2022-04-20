@@ -1,6 +1,6 @@
 import json
 from enum import IntEnum
-from src.socketio_server import SocketIOServer
+from src.socketio_client import SocketIOClient
 
 
 class Commands(IntEnum):
@@ -10,7 +10,7 @@ class Commands(IntEnum):
 
 class WallECommandHandler(object):
   def __init__(self):
-    self.sio_server = SocketIOServer()
+    self.sio_server = SocketIOClient()
     self.sio_server.delegate = self
 
     self.commands = {
@@ -18,8 +18,8 @@ class WallECommandHandler(object):
     }
     self.movement_commands = {}
 
-  def start_listening(self):
-    self.sio_server.run()
+  async def start_listening(self):
+    await self.sio_server.run()
 
   def handle_message(self, message):
     try:
