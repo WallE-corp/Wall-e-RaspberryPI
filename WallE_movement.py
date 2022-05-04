@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+import time
 
 import serial
-import time
-from command_handler import WallECommandHandler
+import threading
+from walle_networking import WallECommandHandler
 
 ch = WallECommandHandler()
 
@@ -34,20 +35,17 @@ def backward(data):
   ser.write(b"back\n")
 
 
+def read_serial_data():
+  while True:
+    line = ser.readline()\
+      .decode('utf-8')\
+      .rstrip()
+    print(line)
+    time.sleep(3)
+
+
 if __name__ == '__main__':
+  thread = threading.Thread(target=read_serial_data)
+  thread.start()
   ch.start_listening()
-  """
-      ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
-      ser.reset_input_buffer()
-      data = 0
-      while True:
-        if data == 0:
-          ser.write(b"go\n")
-          data = 1
-        elif data == 1:
-          ser.write(b"back\n")
-          data = 0
-        line = ser.readline().decode('utf-8').rstrip()
-        print(line)
-        time.sleep(3)
-  """
+

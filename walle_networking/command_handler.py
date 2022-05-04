@@ -1,20 +1,25 @@
 import json
+from enum import IntEnum
+from src.socketio_client import SocketIOClient
 
-from socketio_server import SocketIOServer
+
+class Commands(IntEnum):
+  MOVEMENT = 4
+  START_CALIBRATION = 5
 
 
 class WallECommandHandler(object):
   def __init__(self):
-    self.sio_server = SocketIOServer()
+    self.sio_server = SocketIOClient()
     self.sio_server.delegate = self
 
     self.commands = {
-      4: self.handle_movement_command
+      Commands.MOVEMENT: self.handle_movement_command
     }
     self.movement_commands = {}
 
-  def start_listening(self):
-    self.sio_server.run()
+  async def start_listening(self):
+    await self.sio_server.run()
 
   def handle_message(self, message):
     try:

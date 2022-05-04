@@ -1,4 +1,4 @@
-from command_handler import WallECommandHandler
+from walle_networking import WallECommandHandler
 
 ch = WallECommandHandler()
 
