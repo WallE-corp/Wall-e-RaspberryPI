@@ -21,5 +21,5 @@
 
 ### Setting up the socket: ###
 In [python IDE] or terminal, install the following:
-   *pip install python-socketio
+   * pip install python-socketio
 
