@@ -14,9 +14,9 @@
 3. Select “Navigate to interface options” → “legacy camera” → enable → yes
 4. Select finish and reboot the Raspberry Pi
 5. In [python IDE] or terminal, install the following: 
-  *sudo apt-get update
-  *sudo apt-get upgrade
-  *pip3 install picamera
+ - sudo apt-get update
+ * sudo apt-get upgrade
+ * pip3 install picamera
 6. From Raspberry Pi terminal, run vcgencmd get_camera. If you get (supported=1 detected=1), that's mean your camera is connected successfully
 
 ### Setting up the socket: ###
